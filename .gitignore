@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.launch-url
+.launch-pin
+config.json
+history.json
+*.log
+vnc.pass
+*.zip

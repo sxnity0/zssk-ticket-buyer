@@ -1,0 +1,13 @@
+<!doctype html><html lang="sk"><meta charset="utf-8"><link rel="stylesheet" href="/static/theme.css"><script src="/static/theme.js"></script><meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>ZSSK · Prihlásenie</title><style>body{font:18px system-ui;max-width:440px;margin:70px auto;padding:24px;background:#10151b;color:#edf1f6}
+      input,button{font:inherit;padding:14px;box-sizing:border-box;width:100%;margin:8px 0}button{background:var(--lime);color:var(--accent-ink);border:0;border-radius:12px}input{background:#111922;color:#edf1f6;border:1px solid #465363;border-radius:12px}input:focus,button:focus-visible{outline:2px solid var(--accent-ui);outline-offset:2px}</style>
+      <h1 style="text-align:center">ZSSK</h1><p>Pre automatické otvorenie napíš <b>zssk</b> v Termuxe. Alebo zadaj aktuálny PIN.</p><form method="post">
+      <input type="hidden" name="csrf" value="{{csrf}}"><input name="pin" type="password" required autocomplete="off" aria-label="PIN">
+      <button>Otvoriť</button><p>{{error}}</p></form><script>
+const pin = new URLSearchParams(location.hash.slice(1)).get('pin');
+if (pin && /^[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/.test(pin)) {
+    history.replaceState(null, '', '/login');
+    document.querySelector('[name=pin]').value = pin;
+    document.querySelector('form').requestSubmit();
+}
+</script></html>
